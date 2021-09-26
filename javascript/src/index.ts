@@ -1,0 +1,1 @@
+export { terbilang } from './terbilang';

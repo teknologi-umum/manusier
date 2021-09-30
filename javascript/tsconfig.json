@@ -17,6 +17,7 @@
     "preserveConstEnums": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "newLine": "lf"

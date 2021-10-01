@@ -1,62 +1,98 @@
-import { ANGKA, PULUHAN, SATUAN_LONG } from './constants';
+import { ANGKA, PULUHAN, SATUAN_LONG, BELASAN, SATUAN_RIBU } from './constants';
 
-export function terbilang(number: string | number): string {
-  if (typeof number === 'string') number = Number(number);
-
-  if (number === 0) {
-    return ANGKA[0];
-  }
-
-  if (number < 0) {
-    return `minus ${terbilang(-number)}`;
-  }
+export function terbilang(n: string | number): string {
+  if (typeof n === 'string') n = Number(n);
 
   const parts: string[] = [];
 
-  if (number / 1_000_000_000_000_000 > 0) {
-    parts.push(`${terbilang(number / 1_000_000_000_000_000)} ${SATUAN_LONG[6]}`);
-    number %= 1_000_000_000_000_000;
+  if (n < 0) {
+    parts.push('minus');
+    n *= -1;
   }
 
-  if (number / 1_000_000_000_000 > 0) {
-    parts.push(`${terbilang(number / 1_000_000_000_000)} ${SATUAN_LONG[5]}`);
-    number %= 1_000_000_000_000;
+  const triplets = splitPerThree(n);
+  if (triplets.length === 0 || Number(triplets.join('')) === 0) {
+    return ANGKA[0];
   }
 
-  if (number / 1_000_000_000 > 0) {
-    parts.push(`${terbilang(number / 1_000_000_000)} ${SATUAN_LONG[4]}`);
-    number %= 1_000_000_000;
-  }
+  for (let i = triplets.length - 1; i >= 0; i--) {
+    const triplet = triplets[i];
 
-  if (number / 1_000_000 > 0) {
-    parts.push(`${terbilang(number / 1_000_000)} ${SATUAN_LONG[3]}`);
-    number %= 1_000_000;
-  }
+    if (triplet === 0) {
+      continue;
+    }
 
-  if (number / 1_000 > 0) {
-    parts.push(`${terbilang(number / 1_000)} ${SATUAN_LONG[2]}`);
-    number %= 1000;
-  }
+    const hundreds = Math.floor(triplet / 100) % 10;
+    const tens = Math.floor(triplet / 10) % 10;
+    const units = triplet % 10;
 
-  if (number / 100 > 0) {
-    parts.push(`${terbilang(number / 100)} ${SATUAN_LONG[1]}`);
-    number %= 100;
-  }
+    // Case for 100
+    if (hundreds === 1) {
+      parts.push('seratus');
+    } else if (hundreds > 0) {
+      parts.push(ANGKA[hundreds] + ' ratus');
+    }
 
-  if (number > 0) {
-    if (number < 12) {
-      parts.push(ANGKA[number]);
-    } else {
-      let lastPart = PULUHAN[number / 10];
-      if (number % 10 > 0) {
-        lastPart += `-${ANGKA[number % 10]}`;
+    // Special case for 1000
+    if (triplet === 1 && i === 1) {
+      parts.push('seribu');
+      continue;
+    }
+
+    if (tens === 0 && units === 0) {
+      const mega = SATUAN_LONG[i + 1];
+      if (mega !== '') {
+        // if it's 100, then skip it because we've handled it before
+        if (triplet === 100) {
+          continue;
+        } else {
+          parts.push(mega);
+        }
       }
+      continue;
+    }
 
-      parts.push(lastPart);
+    switch (tens) {
+      case 0:
+        parts.push(ANGKA[units]);
+        break;
+      case 1:
+        parts.push(BELASAN[units]);
+        break;
+      default:
+        if (units > 0) {
+          parts.push(`${PULUHAN[tens]} ${ANGKA[units]}`);
+        } else {
+          parts.push(PULUHAN[tens]);
+        }
+        break;
+    }
+
+    const mega = SATUAN_RIBU[i];
+    if (mega !== '') {
+      parts.push(mega);
     }
   }
 
-  const toWords = parts.join(' ');
+  return parts.join(' ');
+}
 
-  return toWords;
+function splitPerThree(n: number): number[] {
+  const temp: number[] = [];
+  const s = Array.from(String(n));
+
+  const m = s.length % 3;
+  if (m === 2) {
+    temp.push(Number(s.slice(0, 2).join('')));
+    s.splice(0, 2);
+  } else if (m === 1) {
+    temp.push(Number(s.slice(0, 1).join('')));
+    s.splice(0, 1);
+  }
+
+  for (let i = 0; i < s.length; i += 3) {
+    temp.push(Number(s.slice(i, i + 3).join('')));
+  }
+
+  return temp.reverse();
 }

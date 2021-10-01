@@ -1,16 +1,16 @@
-export const ANGKA = [
-  'nol',
-  'satu',
-  'dua',
-  'tiga',
-  'empat',
-  'lima',
-  'enam',
-  'tujuh',
-  'delapan',
-  'sembilan',
+export const ANGKA = ['nol', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan'];
+
+export const BELASAN = [
   'sepuluh',
   'sebelas',
+  'dua belas',
+  'tiga belas',
+  'empat belas',
+  'lima belas',
+  'enam belas',
+  'tujuh belas',
+  'delapan belas',
+  'sembilan belas',
 ];
 
 export const PULUHAN = [
@@ -25,21 +25,38 @@ export const PULUHAN = [
   'delapan puluh',
   'sembilan puluh',
 ];
+
 export const SMALL_SUFFIX = ['belas', 'puluh', 'ratus'];
-//                            3        6      9         12         15            18            21            24           27          30          33
+
 export const SATUAN_LONG = [
-  'puluh',
-  'ratus',
-  'ribu',
-  'juta',
-  'miliar',
-  'triliun',
-  'kuadriliun',
-  'kuantiliun',
-  'sekstiliun',
-  'septiliun',
-  'oktiliun',
-  'noniliun',
-  'desiliun',
+  'puluh', // 1
+  'ratus', // 2
+  'ribu', // 3
+  'juta', // 6
+  'miliar', // 9
+  'triliun', // 12
+  'kuadriliun', // 15
+  'kuantiliun', // 18
+  'sekstiliun', // 21
+  'septiliun', // 24
+  'oktiliun', // 27
+  'noniliun', // 30
+  'desiliun', // 33
 ];
+
+export const SATUAN_RIBU = [
+  '',
+  'ribu', // 3
+  'juta', // 6
+  'miliar', // 9
+  'triliun', // 12
+  'kuadriliun', // 15
+  'kuantiliun', // 18
+  'sekstiliun', // 21
+  'septiliun', // 24
+  'oktiliun', // 27
+  'noniliun', // 30
+  'desiliun', // 33
+];
+
 export const SATUAN_SHORT = ['rb', 'jt', 'mi', 'tr', 'kd', 'kn', 'st', 'sp', 'ok', 'nn', 'ds'];

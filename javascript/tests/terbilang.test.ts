@@ -39,4 +39,9 @@ test('parse triliun', () => {
   );
 });
 
+test('error', () => {
+  // @ts-expect-error test purposes
+  assert.throws(() => terbilang(true), 'argumen pertama harus merupakan angka ataupun string dan tidak boleh kosong');
+});
+
 test.run();

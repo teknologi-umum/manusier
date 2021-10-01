@@ -1,6 +1,10 @@
 import { ANGKA, PULUHAN, SATUAN_LONG, BELASAN, SATUAN_RIBU } from './constants';
 
 export function terbilang(n: string | number): string {
+  if (typeof n !== 'string' && typeof n !== 'number' && n !== '') {
+    throw new TypeError('argumen pertama harus merupakan angka ataupun string dan tidak boleh kosong');
+  }
+
   if (typeof n === 'string') n = Number(n);
 
   const parts: string[] = [];

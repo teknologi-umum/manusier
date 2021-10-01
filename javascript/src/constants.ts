@@ -60,3 +60,15 @@ export const SATUAN_RIBU = [
 ];
 
 export const SATUAN_SHORT = ['rb', 'jt', 'mi', 'tr', 'kd', 'kn', 'st', 'sp', 'ok', 'nn', 'ds'];
+
+export const RELASI_DURASI = {
+  past: '{?} lalu',
+  future: '{?} kedepan',
+  x: '{?} milidetik',
+  s: '{?} detik',
+  m: '{?} menit',
+  h: '{?} jam',
+  d: '{?} hari',
+  o: '{?} bulan',
+  y: '{?} tahun',
+};

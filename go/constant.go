@@ -15,6 +15,19 @@ var ANGKA = []string{
 	"sebelas",
 }
 
+var BELASAN = []string{
+	"sepuluh",
+	"sebelas",
+	"dua belas",
+	"tiga belas",
+	"empat belas",
+	"lima belas",
+	"enam belas",
+	"tujuh belas",
+	"delapan belas",
+	"sembilan belas",
+}
+
 var PULUHAN = []string{
 	"nol",
 	"sepuluh",
@@ -45,4 +58,31 @@ var SATUAN_LONG = []string{
 	"desiliun",
 }
 
+var SATUAN_RIBU = []string{
+	"",
+	"ribu",       // 3
+	"juta",       // 6
+	"miliar",     // 9
+	"triliun",    // 12
+	"kuadriliun", // 15
+	"kuantiliun", // 18
+	"sekstiliun", // 21
+	"septiliun",  // 24
+	"oktiliun",   // 27
+	"noniliun",   // 30
+	"desiliun",   // 33
+}
+
 var SATUAN_SHORT = []string{"rb", "jt", "mi", "tr", "kd", "kn", "st", "sp", "ok", "nn", "ds"}
+
+var RELASI_DURASI = map[string]string{
+	"past":   "{?} lalu",
+	"future": "{?} kedepan",
+	"x":      "{?} milidetik",
+	"s":      "{?} detik",
+	"m":      "{?} menit",
+	"h":      "{?} jam",
+	"d":      "{?} hari",
+	"o":      "{?} bulan",
+	"y":      "{?} tahun",
+}
